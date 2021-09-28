@@ -33,7 +33,5 @@ async def youtube(ctx, *, search):
     print(search_results)
     await ctx.send('https://www.youtube.com/watch?v=' + search_results[0])
 
-TOKEN = 'ODg5NDMyOTYyMzIyNTM0NDEx.YUhK_w.52W8YMwgQUp1gr9VY5j-WMkqwZo'
-
 my_secret = os.environ['token']
 client.run(my_secret)
