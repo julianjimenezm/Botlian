@@ -4,9 +4,19 @@ import youtube_dl
 from urllib import parse, request
 import os
 import re
+-----------------------------
+import musica
+
+cogs = [musica]
 
 client = commands.Bot(command_prefix='$')
 
+
+for i in range(len(cogs)):
+  cogs[i].setup(client)
+------------------------------
+
+###########################################################################################
 #1. veryfing connection: ok
 
 @client.event
@@ -35,6 +45,7 @@ async def youtube(ctx, *, search):
     search_results =  re.findall('watch\?v=(.{11})',html_content.read().decode('utf-8'))
     print(search_results)
     await ctx.send('https://www.youtube.com/watch?v=' + search_results[0])
-
+##############################################################################################################
 my_secret = os.environ['token']
 client.run(my_secret)
+--------------------------------------------
