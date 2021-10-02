@@ -131,5 +131,5 @@ async def stop(ctx):
 #botlian
 
 
-client.run('ODg5NDMyOTYyMzIyNTM0NDEx.YUhK_w.eHQmm-SRPuyUkRezU64M1ztraRI')
+client.run('your own token')
 
