@@ -1,3 +1,4 @@
+oken")
 import discord
 from discord.ext import commands
 import youtube_dl
@@ -7,16 +8,30 @@ import re
 
 client = commands.Bot(command_prefix = '$')
 
+# Connection and first responses
+
 @client.event
 async def on_ready():
-    print('Botlian is already ON')
+    print('Botlian is ON')
 
 
 @client.command()
 async def ping(ctx):
     await ctx.send(f'ping back from {client.user} to {ctx.author} with latency equal to  {client.latency}')
 
-#2. Deleting chat : ok
+
+#  This event causes conflicts with the others events and commands, i dont know why. to check!!!
+'''
+@client.event
+async def on_message(message):
+  if message.content.startswith('$salut'):
+    await message.channel.send(f'Salut {message.author} Bienvenue')
+  if message.content.startswith('$hola'):
+     await message.channel.send(f'Hola {message.author} Bienvenido')
+  if message.content.startswith('$hello'):
+    await message.channel.send(f'Grettings {message.author} Welcome')
+'''
+# Clearing chat
 
 @client.command()
 async def clear(ctx, amount = 5):
@@ -24,10 +39,14 @@ async def clear(ctx, amount = 5):
   print(f'total messages deleted {amount}')
 
 
-#3. youtube connection
+#joining and leaving Vocal channel
 
-## searching songs in youtube - showing the first result
- 
+@client.command()
+async def join(ctx):
+    channel = ctx.author.voice.channel
+    await channel.connect()
+# Search and reatrive youtube url
+
 @client.command()
 async def youtube(ctx, *, search):
     query = parse.urlencode({'search_query': search})
@@ -36,10 +55,10 @@ async def youtube(ctx, *, search):
     await ctx.send('https://www.youtube.com/watch?v=' + search_results[0])
     print(search_results)
 
- 
-# Youtube_dl and FFmpeg Options
 
-### Default expresion to handle some bugs"
+
+# Download YouTube MP3
+ # > Not reivent the Wheel, learn how to use properly
 
 youtube_dl.utils.bug_reports_message = lambda: ''
 
@@ -57,8 +76,7 @@ ytdl_format_options = {
     'source_address': '0.0.0.0' 
 }
 
-ffmpeg_options = {'options': '-vn'}
-
+ffmpeg_format_options = {'options': '-vn'}
 
 ytdl = youtube_dl.YoutubeDL(ytdl_format_options)
 
@@ -68,9 +86,13 @@ class YTDLSource(discord.PCMVolumeTransformer):
         super().__init__(source, volume)
 
         self.data = data
-
         self.title = data.get('title')
         self.url = data.get('url')
+
+# What is Classmethod used for?
+#    Uses of classmethod() function are used in factory design patterns where we want to call 
+#    many functions with the class name rather than an object.
+
 
     @classmethod
     async def from_url(cls, url, *, loop=None, stream=False):
@@ -78,23 +100,13 @@ class YTDLSource(discord.PCMVolumeTransformer):
         data = await loop.run_in_executor(None, lambda: ytdl.extract_info(url, download=not stream))
 
         if 'entries' in data:
-            # take first item from a playlist
             data = data['entries'][0]
 
         filename = data['url'] if stream else ytdl.prepare_filename(data)
-        return cls(discord.FFmpegPCMAudio(filename, **ffmpeg_options), data=data)
+        return cls(discord.FFmpegPCMAudio(filename, **ffmpeg_format_options), data=data)
 
 @client.command(name='play', help='This command plays music')
 async def play(ctx, url):
-    if not ctx.message.author.voice:
-        await ctx.send("You are not connected to a voice channel")
-        return
-
-    else:
-        channel = ctx.message.author.voice.channel
-
-    await channel.connect()
-
     server = ctx.message.guild
     voice_channel = server.voice_client
 
@@ -102,9 +114,8 @@ async def play(ctx, url):
         player = await YTDLSource.from_url(url, loop=client.loop)
         voice_channel.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
 
-    await ctx.send('**Now playing:** {}'.format(player.title))
+    await ctx.send(f'**Now playing:** {player.title}')
 
-    
 @client.command()
 async def pause(ctx):
     voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
@@ -113,7 +124,6 @@ async def pause(ctx):
     else:
         await ctx.send("Currently no audio is playing.")
 
-        
 @client.command()
 async def resume(ctx):
     voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
@@ -124,12 +134,38 @@ async def resume(ctx):
 
 
 @client.command()
-async def stop(ctx):
+async def leave(ctx):
     voice_client = ctx.message.guild.voice_client
     await voice_client.disconnect()
-    await ctx.send('disconnected from voinc channel')
-#botlian
+    await ctx.send('disconnected from voice channel')
 
+# details of our server
 
-client.run('your own token')
+@client.command(help = "Prints details of Server")
+async def where(ctx):
+    owner=str(ctx.guild.owner)
+    region = str(ctx.guild.region)
+    guild_id = str(ctx.guild.id)
+    memberCount = str(ctx.guild.member_count)
+    icon = str(ctx.guild.icon_url)
+    desc=ctx.guild.description
+    
+    embed = discord.Embed(
+        title=ctx.guild.name + " Server Information",
+        description=desc,
+        color=discord.Color.blue()
+    )
+    embed.set_thumbnail(url=icon)
+    embed.add_field(name="Owner", value=owner, inline=True)
+    embed.add_field(name="Server ID", value=guild_id, inline=True)
+    embed.add_field(name="Region", value=region, inline=True)
+    embed.add_field(name="Member Count", value=memberCount, inline=True)
 
+    await ctx.send(embed=embed)
+
+    members=[]
+    async for member in ctx.guild.fetch_members(limit=150) :
+        await ctx.send('Name : {}\t Status : {}\n Joined at {}'.format(member.display_name,str(member.status),str(member.joined_at)))
+
+my_secret = os.environ['token1']
+client.run(my_secret)
