@@ -13,23 +13,11 @@ client = commands.Bot(command_prefix = '$')
 async def on_ready():
     print('Botlian is ON')
 
-
 @client.command()
 async def ping(ctx):
     await ctx.send(f'ping back from {client.user} to {ctx.author} with latency equal to  {client.latency}')
 
 
-#  This event causes conflicts with the others events and commands, i dont know why. to check!!!
-'''
-@client.event
-async def on_message(message):
-  if message.content.startswith('$salut'):
-    await message.channel.send(f'Salut {message.author} Bienvenue')
-  if message.content.startswith('$hola'):
-     await message.channel.send(f'Hola {message.author} Bienvenido')
-  if message.content.startswith('$hello'):
-    await message.channel.send(f'Grettings {message.author} Welcome')
-'''
 # Clearing chat
 
 @client.command()
@@ -57,7 +45,6 @@ async def youtube(ctx, *, search):
 
 
 # Download YouTube MP3
- # > Not reivent the Wheel, learn how to use properly
 
 youtube_dl.utils.bug_reports_message = lambda: ''
 
