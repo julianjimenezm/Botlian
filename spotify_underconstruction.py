@@ -6,6 +6,14 @@ import base64
 import datetime
 import requests
 from urllib.parse import urlencode
+from dotenv import load_dotenv  
+load_dotenv()
+#client_secret = os.getenv(*)
+#client_id = os.getenv(*)
+#spotify_username = os.getenv(*)
+#spotify_password = os.getenv(*)
+
+
 
 # First part,  retrive static information, we cant use it
 
