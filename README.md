@@ -1,6 +1,6 @@
-## Botlian 
+## Botlian.
 ###### Another discord Music BOT
-###### "This robot is an attempt to learn advanced python programming concepts, including topics such as OOP and asynchronous functions."
+
 
 
 
@@ -52,14 +52,13 @@ in your console: $git clone https://github.com/julianjimenezm/Botlian.git
 
 
 
-#### Final note: The robot is not programmed to identify if the vocal channel is empty, to avoid execution errors, 
-#### please access to the vocal channel before executing the $join or $play commands.
+#### Final note: 
+The robot is not programmed to identify if the vocal channel is empty, to avoid execution errors, 
+please access to the vocal channel before executing the $join or $play commands.
 
 
 
 
 
 
-
-
-# Have fun...
+#### Have fun...
