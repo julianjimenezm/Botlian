@@ -3,7 +3,6 @@
 import discord
 from discord.utils import get
 from discord.ext import commands
-from datetime import datetime, timedelta
 from Music import MusicSet 
 from urllib import parse, request
 import os
@@ -23,14 +22,11 @@ import re
 
 client = commands.Bot(command_prefix='$',help_command=None, intents = discord.Intents.all())
 
-
-
 # Getting Ready:
 
 @client.event
 async def on_ready():
     print(f' ** Botlian ** your  Music Bot is ON!!!')
-
 
 
 @client.command()
@@ -44,9 +40,9 @@ async def ping(ctx):
 async def help(ctx):
    
     emBed = discord.Embed(title="Bot help", description="All available help commands", color=0x42f5a7)
-    emBed.add_field(name="help", value="Get help command", inline=False)
+    emBed.add_field(name="ping", value="Test the systems response time and latency", inline=False)
     emBed.add_field(name="info", value="Retrive server information", inline=False)
-    emBed.add_field(name="ping", value="Test the systems response latency", inline=False)
+    emBed.add_field(name="clear", value="Clearing chat, (5 lines by default)", inline=False)
     emBed.set_footer(text='test footer', icon_url='https://media-exp1.licdn.com/dms/image/C560BAQFHd3L0xFcwcw/company-logo_200_200/0/1550868149376?e=2159024400&v=beta&t=LyKtz-V4W8Gfwzi2ZqmikaI9GcUXI3773_aa3F3nIhg')
     await ctx.channel.send(embed=emBed)
 
@@ -177,14 +173,13 @@ async def music(ctx):
     emBed.add_field(name="play", value="start a song and gets available the playlist", inline=False)
     emBed.add_field(name="stop", value="stop current song", inline=False)
     emBed.add_field(name="pause", value="pause current song", inline=False)
-    emBed.add_field(name="resume", value="sesume current song", inline=False)
-    emBed.add_field(name="pl", value="playlist info", inline=False)
+    emBed.add_field(name="resume", value="resume paused current song", inline=False)
+    emBed.add_field(name="pl", value="queue info", inline=False)
     emBed.add_field(name="skip", value="skip the songs", inline=False)
     emBed.set_footer(text='Botlian your Discord Music bot!', icon_url='https://media-exp1.licdn.com/dms/image/C560BAQFHd3L0xFcwcw/company-logo_200_200/0/1550868149376?e=2159024400&v=beta&t=LyKtz-V4W8Gfwzi2ZqmikaI9GcUXI3773_aa3F3nIhg')   
     await ctx.channel.send(embed=emBed)
 
 
-
-token1 = "your own discord token"
+# token1 = "your own discord token"
 
 client.run(token1)
