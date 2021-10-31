@@ -21,7 +21,9 @@ in your console: $git clone https://github.com/julianjimenezm/Botlian.git
 -/help: Displays all the available commands(ping, info, clear)
 
 -/ping: Displays the time of response of our bot and the latency.
+
 -/info: Displays all server information(Owner, location, users
+
 -/clear: Will delete the past messages with the amount specified predefined = 5 lines
 
 ## Voice channel commands.
