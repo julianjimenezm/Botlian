@@ -79,10 +79,8 @@ class YTDLSource(discord.PCMVolumeTransformer):
 
 class MusicPlayer:
     """
-    
     This class implements a volatil playlist, when the bot is disconnected of the vocal channel,
     the playlist information is deleted.
-
     """
 
     ## Working with __slots__ its more efficient in terms of time and memory resources  
@@ -148,7 +146,7 @@ class MusicPlayer:
                 pass
 
     async def destroy(self, guild):
-        """Disconnect and cleanup the player."""
+        """Disconnect and clean up the player."""
         await self._guild.voice_client.disconnect()
         return self.bot.loop.create_task(self._cog.cleanup(guild))
 
@@ -156,8 +154,6 @@ class MusicPlayer:
 class MusicSet:
     def __init__(self):
         self.players = {}
-
-
 
     players = {}
 
@@ -169,7 +165,6 @@ class MusicSet:
             self.players[ctx.guild.id] = player
         
         return player
-
 
     async def play(self, ctx, search: str):
         self.bot = ctx.bot
