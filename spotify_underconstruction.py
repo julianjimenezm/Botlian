@@ -5,6 +5,7 @@ Python script to get spotify token
 import base64
 import datetime
 import requests
+import urllib.parse
 from urllib.parse import urlencode
 from dotenv import load_dotenv  
 load_dotenv()
@@ -14,6 +15,8 @@ load_dotenv()
 #spotify_password = os.getenv(*)
 
 
+#################################################################################################################################
+## Method 1
 
 # First part,  retrive static information, we cant use it
 
@@ -49,8 +52,9 @@ expires_time = token_response["expires_in"]
 difference_time = datetime.timedelta(seconds = expires_time)
 expires = now + difference_time
 
-########################"
+##############################################################################################################################
 
+## Method 2
 class Spotify(object):
     access_token = None
     access_token_expires = datetime.datetime.now()
@@ -161,3 +165,25 @@ class Spotify(object):
         query_params = urlencode({"q": query, "type": search_type.lower()})
         print(query_params)
         return self.base_search(query_params)
+    
+    ## Retriving Spotify URI
+    
+      def search_songs(self, song_name, artist):
+        """Spotify search for an item end-point"""
+       
+        url = f"https://api.spotify.com/v1/search?q={song_name}%20{artist}&type=track%2Cartist&market=US&limit=10&offset=5"
+        
+        response = requests.get(
+            url,
+            headers={
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {self.token}"
+            }
+        )
+        response_json = response.json()
+        
+        song_id = response_json["tracks"]["items"]
+        
+        song_uri = song_id[0]["uri"]
+        
+        return song_uri
