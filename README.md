@@ -1,5 +1,9 @@
-# Botlian
-Another discord BOT
+## Botlian 
+###### Another discord Music BOT
+###### "This robot is an attempt to learn advanced python programming concepts, including topics such as OOP and asynchronous functions."
+
+
+
 
 To run this bot you can directly clone this repository and import our requirements.txt
 
@@ -22,7 +26,7 @@ in your console: $git clone https://github.com/julianjimenezm/Botlian.git
 
 -/ping: Displays the time of response of our bot and the latency.
 
--/info: Displays all server information(Owner, location, users
+-/info: Displays all server information(Owner, Region, users_id , server_id)
 
 -/clear: Will delete the past messages with the amount specified predefined = 5 lines
 
@@ -32,13 +36,30 @@ in your console: $git clone https://github.com/julianjimenezm/Botlian.git
 
 ## Music commands:(see: $music).
 
-- /yts str(arg*) : execute a search on youtube and it displays the thumbnail with the link of  the first result.
-- /play : Run a search on youtube and play the song on our vocal channel. It also  initializes a volatil playlist(queue).
-- /pause:pause the current songs in our vocal channel.
-- /resume: resume paused songs.
-- /skip:  skips the current song being played.
-- /stop:  stops the current song and gets off from the vocal channel.
-- /pl - displays the current music queue.
+-/yts str(arg*) : execute a search on youtube and it displays the thumbnail with the link of  the first result.
+
+-/play : Run a search on youtube and play the song on our vocal channel. It also  initializes a volatil playlist(queue).
+
+-/pause:pause the current songs in our vocal channel.
+
+-/resume: resume paused songs.
+
+-/skip:  skips the current song being played.
+
+-/stop:  stops the current song and gets off from the vocal channel.
+
+-/pl - displays the current music queue.
+
+
+
+#### Final note: The robot is not programmed to identify if the vocal channel is empty, to avoid execution errors, 
+#### please access to the vocal channel before executing the $join or $play commands.
+
+
+
+
+
+
 
 
 # Have fun...
