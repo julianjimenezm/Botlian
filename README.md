@@ -1,14 +1,24 @@
 ## Botlian.
 ###### Another discord Music BOT
 
+The goal to implement this bot was to bring into practice some advanced programming concepts
+such as OOP and asynchronous functions.
+
+The result of the project is nothing more than the adaptation of certain theoretical concepts. 
+So there is no claim of originality, it is just an exercise that allowed us to assimilate and 
+implement some python concepts, in this case coroutines through music bot connections.
 
 
+## Set up.
 
+-Setup properly your python ENV 
 
-To run this bot you can directly clone this repository and import our requirements.txt
+-To run this bot you can directly clone this repository and import our requirements.txt
 
-Remember/
-in your console: $git clone https://github.com/julianjimenezm/Botlian.git
+>in your console: $git clone https://github.com/julianjimenezm/Botlian.git
+
+-Dont forget use your own discord token into your code.
+
 
 ## Events and commands availables.
 
