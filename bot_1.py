@@ -153,5 +153,6 @@ async def where(ctx):
     async for member in ctx.guild.fetch_members(limit=150) :
         await ctx.send('Name : {}\t Status : {}\n Joined at {}'.format(member.display_name,str(member.status),str(member.joined_at)))
 
-my_secret = os.environ['token1']
+#my_secret = os.environ['token1']
+#my_secret = "your discord token"
 client.run(my_secret)
