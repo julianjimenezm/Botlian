@@ -40,6 +40,18 @@ implement some python concepts, in this case coroutines through music bot connec
 
 -/ $ : Predefined prefix
 
+To use any of our commands you must use: $<name command>
+          
+exemple: 
+         
+         $help
+          
+         $join
+          
+         $play <string search or youtube link>
+
+
+
 -/help: Displays all the available commands(ping, info, clear)
 
 -/ping: Displays the time of response of our bot and the latency.
@@ -56,7 +68,7 @@ implement some python concepts, in this case coroutines through music bot connec
 
 - /join - joins our bot to the voice channel
 - /leave - leaves our bot from the voice channel
-- 
+
 
 ### Music commands:(see: $music).
 
