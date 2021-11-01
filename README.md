@@ -13,7 +13,7 @@ implement some python concepts, in this case coroutines through music bot connec
 
 - Setup properly your python ENV 
 
-- To run this bot you can directly clone this repository and import  and install our requirements.txt
+- To run this bot you can directly clone this repository and import our requirements.txt
 
 >in your console:
 >
