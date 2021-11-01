@@ -179,7 +179,6 @@ async def music(ctx):
     emBed.set_footer(text='Botlian your Discord Music bot!', icon_url='https://media-exp1.licdn.com/dms/image/C560BAQFHd3L0xFcwcw/company-logo_200_200/0/1550868149376?e=2159024400&v=beta&t=LyKtz-V4W8Gfwzi2ZqmikaI9GcUXI3773_aa3F3nIhg')   
     await ctx.channel.send(embed=emBed)
 
-
-# token1 = "your own discord token"
+token1 = "your own discord token"
 
 client.run(token1)
