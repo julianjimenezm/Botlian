@@ -14,7 +14,7 @@ Looking to improve those inconvenients, we set out to implement a new bot that w
 us to import our music from a different source like "Spotify". Despite making satisfactory
 progress with the Spotify API : renewing  authentication tokens and implementing some search
 items requests,we couldn't properly connect our spotify account with our discord voice channel.
-We tried to set up services likeLavalink but again we couldn’t configure it properly.
+We tried to set up services like Lavalink but again we couldn’t configure it properly.
 
 So to get out of this impasse, we decided to take a step back and try to improve what we had 
 already achieved with our (bot_1). Where the lag between downloading time and reproduction,
